@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios | SAES</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+        :root {
+            --bg: #09070f;
+            --card: #110d1b;
+            --card-2: #171022;
+            --purple: #9b5cff;
+            --purple-light: #c084fc;
+            --border: rgba(155, 92, 255, 0.25);
+            --text: #f5f3ff;
+            --muted: #9f96b2;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 20% 20%, rgba(126, 34, 206, .18), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, .12), transparent 30%),
+                var(--bg);
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .navbar {
+            background: rgba(9, 7, 15, .82);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            color: var(--purple-light);
+            font-weight: 700;
+            letter-spacing: .5px;
+        }
+
+        .terminal-dot {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            margin-right: 7px;
+            border-radius: 50%;
+            background: var(--purple);
+            box-shadow: 0 0 12px var(--purple);
+        }
+
+        .main-container {
+            max-width: 1100px;
+        }
+
+        .form-card {
+            background: linear-gradient(145deg, rgba(23, 16, 34, .96), rgba(13, 10, 21, .96));
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+        }
+
+        .title {
+            font-weight: 700;
+            letter-spacing: -.5px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+        }
+
+        .section-title {
+            color: var(--purple-light);
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .form-label {
+            color: #d8d0e5;
+            font-size: .9rem;
+            font-weight: 600;
+        }
+
+        .form-control,
+        .form-select {
+            color: var(--text);
+            background-color: #0d0915;
+            border: 1px solid rgba(255,255,255,.09);
+            border-radius: 12px;
+            padding: .75rem .9rem;
+        }
+
+        .form-control::placeholder {
+            color: #665d73;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            color: var(--text);
+            background-color: #0d0915;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 .2rem rgba(155, 92, 255, .15);
+        }
+
+        .form-select option {
+            background: #110d1b;
+        }
+
+        .input-group-text {
+            color: var(--purple-light);
+            background: #0d0915;
+            border: 1px solid rgba(255,255,255,.09);
+            border-right: 0;
+        }
+
+        .input-group .form-control {
+            border-left: 0;
+        }
+
+        .btn-purple {
+            color: white;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            border: none;
+            border-radius: 12px;
+            padding: .75rem 1.4rem;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, .25);
+            transition: .2s ease;
+        }
+
+        .btn-purple:hover {
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 30px rgba(124, 58, 237, .4);
+        }
+
+        .btn-outline-darkmode {
+            color: #cfc5dc;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 12px;
+            padding: .75rem 1.4rem;
+        }
+
+        .btn-outline-darkmode:hover {
+            color: white;
+            border-color: var(--purple);
+            background: rgba(155, 92, 255, .08);
+        }
+
+        .status-box {
+            background: rgba(155, 92, 255, .06);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 16px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            display: inline-block;
+            border-radius: 50%;
+            background: #a855f7;
+            box-shadow: 0 0 10px #a855f7;
+        }
+
+        .terminal-text {
+            color: #a78bfa;
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            font-size: .8rem;
+        }
+
+        .footer-text {
+            color: #625970;
+            font-size: .78rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container main-container py-2">
+            <span class="brand">
+                <span class="terminal-dot"></span>
+                SAES<span class="text-white">/usuarios</span>
+            </span>
+
+            <span class="terminal-text d-none d-md-inline">
+                system.online
+            </span>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO -->
+    <main class="container main-container py-5">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                <div class="form-card p-4 p-md-5">
+
+                    <!-- ENCABEZADO -->
+                    <div class="mb-4">
+                        <div class="section-title mb-2">
+                            <i class="bi bi-terminal me-1"></i>
+                            Administración
+                        </div>
+
+                        <h1 class="title h2 mb-2">
+                            Registrar usuario
+                        </h1>
+
+                        <p class="subtitle mb-0">
+                            Crea una nueva cuenta para acceder al sistema.
+                        </p>
+                    </div>
+
+                    <form id="usuarioForm">
+
+                        <!-- DATOS DE ACCESO -->
+                        <div class="section-title mb-3">
+                            Datos de acceso
+                        </div>
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label for="descripcion" class="form-label">
+                                    Descripción / usuario
+                                </label>
+
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-person"></i>
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="descripcion"
+                                        name="descricpion_usua"
+                                        placeholder="Ej. administrador"
+                                        maxlength="20"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">
+                                    Contraseña
+                                </label>
+
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-key"></i>
+                                    </span>
+
+                                    <input
+                                        type="password"
+                                        class="form-control"
+                                        id="password"
+                                        name="contraseña_usua"
+                                        placeholder="Ingresa una contraseña"
+                                        maxlength="20"
+                                        required
+                                    >
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-outline-darkmode"
+                                        id="togglePassword"
+                                        title="Mostrar contraseña"
+                                    >
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr class="border-secondary-subtle my-4">
+
+                        <!-- ESTADO -->
+                        <div class="section-title mb-3">
+                            Estado de la cuenta
+                        </div>
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label for="estatus" class="form-label">
+                                    Estatus
+                                </label>
+
+                                <select
+                                    class="form-select"
+                                    id="estatus"
+                                    name="estatus_usua"
+                                    required
+                                >
+                                    <option value="alta" selected>Alta</option>
+                                    <option value="baja">Baja</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 d-flex align-items-end">
+                                <div class="status-box w-100">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="status-dot"></span>
+                                        <strong id="statusText">Usuario activo</strong>
+                                    </div>
+
+                                    <small class="text-secondary">
+                                        El usuario podrá utilizar el sistema.
+                                    </small>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- BOTONES -->
+                        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-5">
+
+                            <button
+                                type="reset"
+                                class="btn btn-outline-darkmode"
+                            >
+                                <i class="bi bi-x-lg me-1"></i>
+                                Limpiar
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="btn btn-purple"
+                            >
+                                <i class="bi bi-shield-plus me-1"></i>
+                                Registrar usuario
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="text-center mt-3 footer-text">
+                    SAES · Sistema de Administración Escolar
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Mostrar / ocultar contraseña
+        const password = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", () => {
+            const isPassword = password.type === "password";
+
+            password.type = isPassword ? "text" : "password";
+
+            togglePassword.innerHTML = isPassword
+                ? '<i class="bi bi-eye-slash"></i>'
+                : '<i class="bi bi-eye"></i>';
+        });
+
+        // Actualizar texto del estado
+        const estatus = document.getElementById("estatus");
+        const statusText = document.getElementById("statusText");
+
+        estatus.addEventListener("change", () => {
+            statusText.textContent =
+                estatus.value === "alta"
+                    ? "Usuario activo"
+                    : "Usuario desactivado";
+        });
+
+        // Demo del formulario
+        document.getElementById("usuarioForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            alert("Usuario listo para registrarse.");
+        });
+    </script>
+
+</body>
+</html>
