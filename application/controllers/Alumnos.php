@@ -23,4 +23,13 @@ class Alumnos extends CI_Controller
 
         redirect('alumnos');
     }
+
+    public function lista()
+    {
+        $this->load->model('Alumno_model');
+
+        $datos['alumnos'] = $this->Alumno_model->obtener_alumnos();
+
+        $this->load->view('lista_alumnos', $datos);
+    }
 }
