@@ -20,7 +20,7 @@
             </div>
         <?php endif; ?>
 
-        <form action="<?= site_url('Usuarios_froms_controll/entrar'); ?>" method="POST">
+        <form action="<?= base_url('Usuarios_froms/entrar'); ?>" method="POST">
 
             <div class="mb-3">
                 <label for="id_usuario" class="form-label">ID de usuario</label>

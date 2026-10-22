@@ -14,7 +14,7 @@
         </p>
 
         <form
-            action="<?= base_url('index.php/usuarios_froms_controll/guardar'); ?>"
+            action="<?= base_url('index.php/usuarios_froms/guardar'); ?>"
             method="POST"
         >
 

@@ -13,7 +13,7 @@
         </p>
 
         <form
-            action="<?= base_url('index.php/alumnos_froms_controll/guardar'); ?>"
+            action="<?= base_url('index.php/alumnos_froms/guardar'); ?>"
             method="POST"
         >
 
