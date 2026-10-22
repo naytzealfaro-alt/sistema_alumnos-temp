@@ -13,10 +13,15 @@
             Registro de información del usuario del sistema SAES.
         </p>
 
-        <form
-            action="<?= base_url('index.php/usuarios_froms/guardar'); ?>"
-            method="POST"
-        >
+        <?php if ($this->session->flashdata('usuario_error')): ?>
+            <div class="alert alert-danger" role="alert"><?= html_escape($this->session->flashdata('usuario_error')) ?></div>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('usuario_ok')): ?>
+            <div class="alert alert-success" role="status"><?= html_escape($this->session->flashdata('usuario_ok')) ?></div>
+        <?php endif; ?>
+
+        <form action="<?= site_url('Usuarios_froms/guardar'); ?>" method="POST">
+            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 
             <!-- ID USUARIO -->
             <div class="mb-3">
@@ -127,11 +132,11 @@
                             Selecciona el estatus
                         </option>
 
-                        <option value="Activo">
+                        <option value="alta">
                             Activo
                         </option>
 
-                        <option value="Inactivo">
+                        <option value="baja">
                             Inactivo
                         </option>
 

@@ -20,7 +20,8 @@
             </div>
         <?php endif; ?>
 
-        <form action="<?= base_url('Usuarios_froms/entrar'); ?>" method="POST">
+        <form action="<?= site_url('Usuarios_froms/entrar'); ?>" method="POST">
+            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 
             <div class="mb-3">
                 <label for="id_usuario" class="form-label">ID de usuario</label>

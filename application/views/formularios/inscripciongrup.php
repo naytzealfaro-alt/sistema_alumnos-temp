@@ -36,33 +36,33 @@
         </h5>
 
         <form action="<?= site_url('Inscripciongrup_controll/guardar'); ?>" method="post">
-              method="post">
+            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 
             <div class="mb-3">
-                <label for="id_grupo" class="form-label">
+                <label for="id_grup" class="form-label">
                     ID del grupo
                 </label>
 
                 <input
                     type="number"
                     class="form-control"
-                    id="id_grupo"
-                    name="id_grupo"
+                    id="id_grup"
+                    name="id_grup"
                     min="1"
                     required
                     placeholder="Ingresa el ID del grupo">
             </div>
 
             <div class="mb-3">
-                <label for="id_alumno" class="form-label">
+                <label for="id_alumn" class="form-label">
                     ID del alumno
                 </label>
 
                 <input
                     type="number"
                     class="form-control"
-                    id="id_alumno"
-                    name="id_alumno"
+                    id="id_alumn"
+                    name="id_alumn"
                     min="1"
                     required
                     placeholder="Ingresa el ID del alumno">
@@ -130,11 +130,11 @@
                                 </td>
 
                                 <td>
-                                    <?= html_escape($inscripcion->id_grupo); ?>
+                                    <?= html_escape($inscripcion->id_grup); ?>
                                 </td>
 
                                 <td>
-                                    <?= html_escape($inscripcion->id_alumno); ?>
+                                    <?= html_escape($inscripcion->id_alumn); ?>
                                 </td>
 
                                 <td>

@@ -35,7 +35,7 @@
         </h5>
 
         <form action="<?= site_url('Captcal_controll/guardar'); ?>" method="post">
-              method="post">
+            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 
             <div class="mb-3">
                 <label for="id_alumn" class="form-label">

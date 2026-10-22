@@ -36,7 +36,7 @@
         </h5>
 
         <form action="<?= site_url('Grupos_controll/guardar'); ?>" method="post">
-              method="post">
+            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 
             <div class="mb-3">
                 <label for="descripcion_grup" class="form-label">
